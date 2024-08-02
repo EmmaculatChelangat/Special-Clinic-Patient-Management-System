@@ -34,9 +34,9 @@ if(isset($_POST['submit'])) {
 
       //first to store a row in patient visit
 
-     $queryVisit = "INSERT INTO `patient_visits`(`visit_date`, 
-    `next_visit_date`, `bp`, `weight`, `disease`, `patient_id`) 
-    VALUES('$visitDate', 
+     $queryVisit = "INSERT INTO `patient_visits`(`visit_date`,
+    `next_visit_date`,`bp`, `weight`, `disease`, `patient_id`) 
+    VALUES('$visitDate',
     nullif('$nextVisitDate', ''), 
     '$bp', '$weight', '$disease', $patientId);";
     $stmtVisit = $con->prepare($queryVisit);
@@ -54,11 +54,13 @@ if(isset($_POST['submit'])) {
       $curMedicineDetailId = $medicineDetailIds[$i];
       $curQuantity = $quantities[$i];
       $curDosage = $dosages[$i];
+      $cNotes = (string)$_POST['clinical_history'];
+      $cNotes = htmlspecialchars($cNotes,ENT_QUOTES,'UTF-8');
 
       $qeuryMedicationHistory = "INSERT INTO `patient_medication_history`(
-      `patient_visit_id`,
+      `patient_visit_id`,`clinical_history`,
       `medicine_details_id`, `quantity`, `dosage`)
-      VALUES($lastInsertId, $curMedicineDetailId, $curQuantity, $curDosage);";
+      VALUES($lastInsertId,'$cNotes',$curMedicineDetailId, $curQuantity, $curDosage);";
       $stmtDetails = $con->prepare($qeuryMedicationHistory);
       $stmtDetails->execute();
     }
@@ -88,7 +90,7 @@ $medicines = getMedicines($con);
  <?php include './config/site_css_links.php' ?>
 
  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
- <title>New Prescription - Clinic's Patient Management System in PHP</title>
+ <title>New Prescription - Kisii Clinic's Patient Management System</title>
 
 </head>
 <body class="hold-transition sidebar-mini dark-mode layout-fixed layout-navbar-fixed">
@@ -105,7 +107,7 @@ include './config/sidebar.php';?>
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>New Prescription</h1>
+              <h1>Patient Information</h1>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -154,9 +156,48 @@ include './config/sidebar.php';?>
             </div>
           </div>
           
+          <!-- relocated to page below -->
 
+          <!-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-10">
+            <div class="form-group">
+              <label>Next Visit Date</label>
+              <div class="input-group date" 
+              id="next_visit_date" 
+              data-target-input="nearest">
+              <input type="text" class="form-control form-control-sm rounded-0 datetimepicker-input" data-target="#next_visit_date" name="next_visit_date" data-toggle="datetimepicker" autocomplete="off"/>
+              <div class="input-group-append" 
+              data-target="#next_visit_date" 
+              data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+        </div>
+      </div> -->
 
-          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-10">
+      <div class="clearfix">&nbsp;</div>
+
+      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+        <label>BP</label>
+        <input id="bp" class="form-control form-control-sm rounded-0" name="bp" required="required" />
+      </div>
+      
+      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+        <label>Weight</label>
+        <input id="weight" name="weight" class="form-control form-control-sm rounded-0" required="required" />
+      </div>
+
+      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+        <label>Diagnosis</label>
+        <input id="disease" required="required" name="disease" class="form-control form-control-sm rounded-0" />
+      </div>
+
+      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+        <label>Clinical Notes</label> <br>
+        <textarea class="form-control form-control-sm rounded-0" name="clinical_history" placeholder="Leave a comment here ..." style="height: 100px;"></textarea>
+      </div>
+
+       <!-- relocating new visit date -->
+   <div class="col-lg-3 col-md-3 col-sm-4 col-xs-10">
             <div class="form-group">
               <label>Next Visit Date</label>
               <div class="input-group date" 
@@ -172,25 +213,24 @@ include './config/sidebar.php';?>
         </div>
       </div>
 
-      <div class="clearfix">&nbsp;</div>
-
-      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-        <label>BP</label>
-        <input id="bp" class="form-control form-control-sm rounded-0" name="bp" required="required" />
-      </div>
-      
-      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-        <label>Weight</label>
-        <input id="weight" name="weight" class="form-control form-control-sm rounded-0" required="required" />
-      </div>
-
-      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-        <label>Disease</label>
-        <input id="disease" required="required" name="disease" class="form-control form-control-sm rounded-0" />
-      </div>
-
-
     </div>
+
+     <!-- relocating new visit date -->
+   <!-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-10">
+            <div class="form-group">
+              <label>Next Visit Date</label>
+              <div class="input-group date" 
+              id="next_visit_date" 
+              data-target-input="nearest">
+              <input type="text" class="form-control form-control-sm rounded-0 datetimepicker-input" data-target="#next_visit_date" name="next_visit_date" data-toggle="datetimepicker" autocomplete="off"/>
+              <div class="input-group-append" 
+              data-target="#next_visit_date" 
+              data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+        </div>
+      </div> -->
 
     <div class="col-md-12"><hr /></div>
     <div class="clearfix">&nbsp;</div>
@@ -226,7 +266,9 @@ include './config/sidebar.php';?>
         <i class="fa fa-plus"></i>
       </button>
     </div>
-
+    <br>
+   
+    
   </div>
 
   <div class="clearfix">&nbsp;</div>
@@ -257,6 +299,9 @@ include './config/sidebar.php';?>
     </table>
   </div>
 
+
+  
+
   <div class="clearfix">&nbsp;</div>
   <div class="row">
     <div class="col-md-10">&nbsp;</div>
@@ -265,6 +310,8 @@ include './config/sidebar.php';?>
       class="btn btn-primary btn-sm btn-flat btn-block">Save</button>
     </div>
   </div>
+
+  
 </form>
 
 </div>

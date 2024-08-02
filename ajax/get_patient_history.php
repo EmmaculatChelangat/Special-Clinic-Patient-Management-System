@@ -11,8 +11,7 @@
     patient_medication_history (quantity, dosage)
 
     */
-    $query = "SELECT `m`.`medicine_name`, `md`.`packing`, 
-    `pv`.`visit_date`, `pv`.`disease`, `pmh`.`quantity`, `pmh`.`dosage` 
+    $query = "SELECT *
     from `medicines` as `m`, `medicine_details` as `md`, 
     `patient_visits` as `pv`, `patient_medication_history` as `pmh` 
     where `m`.`id` = `md`.`medicine_id` and 
@@ -32,6 +31,7 @@
         
         $data = $data.'<td class="px-2 py-1 align-middle text-center">'.$i.'</td>';
         $data = $data.'<td class="px-2 py-1 align-middle">'.date("M d, Y", strtotime($r['visit_date'])).'</td>';
+        $data = $data.'<td class="px-2 py-1 align-middle">'.$r['clinical_history'].'</td>';
         $data = $data.'<td class="px-2 py-1 align-middle">'.$r['disease'].'</td>';
         $data = $data.'<td class="px-2 py-1 align-middle">'.$r['medicine_name'].'</td>';
         $data = $data.'<td class="px-2 py-1 align-middle text-right">'.$r['packing'].'</td>';

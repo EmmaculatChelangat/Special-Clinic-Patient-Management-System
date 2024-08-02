@@ -77,7 +77,7 @@ FROM `patients` order by `patient_name` asc;";
  <?php include './config/data_tables_css.php';?>
 
   <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <title>Patients - Clinic's Patient Management System in PHP</title>
+  <title> Clinic's Patient Management System</title>
 
 </head>
 <body class="hold-transition sidebar-mini dark-mode layout-fixed layout-navbar-fixed">
@@ -126,12 +126,12 @@ include './config/sidebar.php';?>
               <br>
               <br>
               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
-                <label>Address</label> 
+                <label>Location</label> 
                 <input type="text" id="address" name="address" required="required"
                 class="form-control form-control-sm rounded-0"/>
               </div>
               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
-                <label>CNIC</label>
+                <label>ID</label>
                 <input type="text" id="cnic" name="cnic" required="required"
                 class="form-control form-control-sm rounded-0"/>
               </div>

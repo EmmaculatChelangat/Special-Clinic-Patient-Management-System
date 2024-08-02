@@ -1,6 +1,5 @@
 <?php 
 include './config/connection.php';
-
   $date = date('Y-m-d');
   
   $year =  date('Y'); 

@@ -38,9 +38,6 @@ try {
       echo $ex->getMessage();
       exit;
     }
-  
-
-		
 	}
 ?>
 <!DOCTYPE html>
@@ -48,7 +45,7 @@ try {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login - Clinic's Patient Management System in PHP</title>
+  <title>Kisii Special Clinic Patient Management System</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -77,7 +74,7 @@ try {
 <div class="login-box">
   <div class="login-logo mb-4">
     <img src="dist/img/logo.jpg" class="img-thumbnail p-0 border rounded-circle" id="system-logo">
-    <div class="text-center h2 mb-0">Clinic's Patient Management System - PHP</div>
+    <div class="text-center h2 mb-0">Kisii Special Clinic Patient Management System</div>
   </div>
   <!-- /.login-logo -->
   <div class="card card-outline card-primary rounded-0 shadow">

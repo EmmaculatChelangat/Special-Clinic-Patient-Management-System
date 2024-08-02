@@ -71,7 +71,8 @@ include './config/sidebar.php';?>
                     <col width="10%">
                     <col width="15%">
                     <col width="15%">
-                    <col width="40%">
+                    <col width="20%">
+                    <col width="20%">
                     <col width="10%">
                     <col width="10%">
                     <col width="10%">
@@ -80,6 +81,7 @@ include './config/sidebar.php';?>
                     <tr class="bg-gradient-primary text-light">
                       <th class="p-1 text-center">S.No</th>
                       <th class="p-1 text-center">Visit Date</th>
+                      <th class="p-1 text-center">Clinical Notes</th>
                       <th class="p-1 text-center">Disease</th>
                       <th class="p-1 text-center">Medicine</th>
                       <th class="p-1 text-center">Packing</th>
